@@ -80,8 +80,18 @@ public class Silly implements Comparable<Silly>{
      *       Make sure you document this method!
      */
 
+    /**
+     * Creates a new Silly object.
+     * This constructor takes in a single int as an argument.
+     *
+     * @param first a string for the first string instance
+     * @param last a string for the second string instance
+     */
 
+    public Silly(String first, String last){
 
+        this.name = first + last;
+    }
 
 
     public static void main(String[] args) {
@@ -116,7 +126,7 @@ public class Silly implements Comparable<Silly>{
         y.countStatic();
         x.countStatic();
         x.countStatic();
-        int[] expected_values = {};
+        int[] expected_values = {0, 0, 1, 2};
 
         System.out.println("The countStatic calls will return " + Arrays.toString(expected_values));
     }
@@ -134,6 +144,8 @@ public class Silly implements Comparable<Silly>{
     @Override
     public String toString(){
         // TODO (Task 3): Implement the body of this method!
+
+        return this.name;
     }
 
     /**
@@ -146,6 +158,7 @@ public class Silly implements Comparable<Silly>{
      * @param o   the object to compare to
      * @return    whether o is a Silly object with the same name as this.
      */
+
     @Override
     public boolean equals(Object o) {
         /**
@@ -156,11 +169,16 @@ public class Silly implements Comparable<Silly>{
         if (!(o instanceof Silly)){
             return false;
         }
-
         Silly other = (Silly) o; // To access .name of o, we need to cast it.
 
         // Hint: to compare strings, we need to use .equals()
         //       e.g. s1.equals(s2)
+
+        if (other.name.equals(this.name)){
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -194,6 +212,16 @@ public class Silly implements Comparable<Silly>{
          *                You can get the length of a string by using the
          *                .length() method.
          */
+
+        if(this.name.length() < other.name.length()){
+            return -1;
+        }
+        else if (this.name.length() == other.name.length()){
+            return 0;
+        }
+        else{
+            return 1;
+        }
     }
 
     /*
